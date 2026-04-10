@@ -1,0 +1,6 @@
+// Temporary Service with GUID Name — BlueHammer SYSTEM Escalation
+// https://github.com/technoherder/BlueHammerFix/blob/main/detection_rules/sigma/bluehammer_temp_service_creation.yml
+DeviceEvents
+| where ActionType == "ServiceInstalled"
+| extend ServiceName = todynamic(AdditionalFields)["ServiceName"]
+| where ServiceName matches regex "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"

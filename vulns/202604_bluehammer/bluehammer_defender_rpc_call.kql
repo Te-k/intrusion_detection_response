@@ -1,0 +1,9 @@
+// Direct RPC Call to Windows Defender Update Endpoint
+// https://github.com/technoherder/BlueHammerFix/blob/main/detection_rules/sigma/bluehammer_defender_rpc_call.yml
+DeviceEvents
+| where ActionType == "NamedPipeEvent"
+| extend FileOperation=parse_json(AdditionalFields)["FileOperation"]
+| extend Pipename=parse_json(AdditionalFields)["PipeName"]
+| where Pipename contains "IMpService"
+and InitiatingProcessFileName !in ("MsMpEng.exe", "MpCmdRun.exe", "NisSrv.exe", "MpSigStub.exe", "svchost.exe", "SecurityHealthService.exe") // legit processes
+Now

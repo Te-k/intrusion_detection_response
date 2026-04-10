@@ -1,0 +1,6 @@
+// Source: https://github.com/technoherder/BlueHammerFix/blob/main/detection_rules/sigma/bluehammer_cloudfiles_abuse.yml
+// Cloud Files Sync Root Registration by Non-Cloud-Storage Process
+DeviceImageLoadEvents
+| where FileName == "CldApi.dll"
+| where InitiatingProcessFileName !in ("OneDrive.exe", "OneDriveSetup.exe", "FileCoAuth.exe", "Dropbox.exe", "GoogleDriveFS.exe", "iCloudDrive.exe", "explorer.exe") // legitimate cloud providers
+and InitiatingProcessFolderPath !startswith @"C:\Windows\System32\" and InitiatingProcessFolderPath !startswith @"C:\Windows\SysWOW64\" // Legit system binaries
