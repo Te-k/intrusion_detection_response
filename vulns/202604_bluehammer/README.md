@@ -4,6 +4,7 @@ Blue Hammer is a privilege escalation in Windows 10/11 that was publicly dropped
 
 * [Github repo](https://github.com/Nightmare-Eclipse/BlueHammer)
 * [Blog post](https://deadeclipse666.blogspot.com/2026/04/public-disclosure.html)
+* CVE-2026-33825: [NIST](https://nvd.nist.gov/vuln/detail/CVE-2026-33825), [Microsoft](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-33825)
 
 Analysis:
 * [BlueHammer: Inside the Windows Zero-Day That Turns Defender Against Itself](https://www.cyderes.com/howler-cell/windows-zero-day-bluehammer)
@@ -12,7 +13,7 @@ Detection rules:
 * One KQL rule [here](https://github.com/SlimKQL/Detections.AI/blob/main/KQL/defenderxdr-bluehammer-detection.kql)
 * Yara and SIGMA [here](https://github.com/technoherder/BlueHammerFix/tree/main/detection_rules)
 
-My translation of the SIGMA rules above to KQL are in this folder.
+My translation of some the SIGMA rules above to KQL are in this folder.
 
 
 
