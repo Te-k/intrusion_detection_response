@@ -1,0 +1,9 @@
+// Detects malicious browser extensions ids in file path
+// List of malicious extensions taken from https://github.com/toborrm9/malicious_extension_sentry
+// Creation date: 13/05/2026
+let malicious_extensions = (externaldata(extension_id: string)
+[@"https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/refs/heads/main/malicious_extensions_detailed.csv"]
+with (format="csv", ignoreFirstRecord=true));
+let extensions_ids = (malicious_extensions | project extension_id);
+DeviceFileEvents
+| where FolderPath has_any (extensions_ids)
